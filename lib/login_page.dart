@@ -4,6 +4,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:testing_app/apple_auth.dart';
 import 'package:testing_app/apple_sign_in_available.dart';
+import 'package:testing_app/bounce_animation.dart';
+import 'package:testing_app/delayed_animation.dart';
 import 'package:testing_app/enum_string.dart';
 import 'package:testing_app/fade_animation.dart';
 import 'package:testing_app/fb_auth.dart';
@@ -139,34 +141,36 @@ class _LoginPageState extends State<LoginPage> {
                       ])),
                 ),
                 SizedBox(height: 30),
-                FadeAnimation(
-                  delay: 2,
-                  child: Container(
-                      height: 50,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          gradient: LinearGradient(colors: [
-                            Color.fromRGBO(143, 148, 251, 1),
-                            Color.fromRGBO(143, 148, 251, .6),
-                          ])),
-                      child: Center(
-                        child: Text('Login',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold)),
-                      )),
+                DelayedAnimation(
+                  delay: 500,
+                  child: BounceAnimation(
+                    child: Container(
+                        height: 50,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            gradient: LinearGradient(colors: [
+                              Color.fromRGBO(143, 148, 251, 1),
+                              Color.fromRGBO(143, 148, 251, .6),
+                            ])),
+                        child: Center(
+                          child: Text('Login',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold)),
+                        )),
+                  ),
                 ),
                 SizedBox(height: 20),
                 Column(
                   children: [
-                    FadeAnimation(delay: 2.2, child: Text('Sign In With')),
+                    DelayedAnimation(delay: 500.0, child: Text('Sign In With')),
                     SizedBox(height: 10),
                     Builder(
                         builder: (context) => Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                FadeAnimation(
-                                  delay: 2.2,
+                                DelayedAnimation(
+                                  delay: 500.0,
                                   child: IconButton(
                                       icon: Image.asset(
                                           'assets/images/google_logo.png',
@@ -177,14 +181,14 @@ class _LoginPageState extends State<LoginPage> {
                                           .catchError((e) => print(e))),
                                 ),
                                 SizedBox(height: 10),
-                                FadeAnimation(
-                                    delay: 2.4,
+                                DelayedAnimation(
+                                    delay: 500.0,
                                     child: IconButton(
                                         icon: Icon(FontAwesomeIcons.facebookF, color: Color(0xff4267B2),),
                                         onPressed: null)),
                                 SizedBox(height: 10),
-                                FadeAnimation(
-                                    delay: 2.5,
+                                DelayedAnimation(
+                                    delay: 500.0,
                                     child: IconButton(icon: Icon(FontAwesomeIcons.appleAlt, color: Colors.black,), onPressed: appleSignInAvailable
                                         .isAvailable
                                         ? () => _signInWithApple(context)
@@ -194,8 +198,8 @@ class _LoginPageState extends State<LoginPage> {
                   ],
                 ),
                 SizedBox(height: 10),
-                FadeAnimation(
-                  delay: 2.6,
+                DelayedAnimation(
+                  delay: 500,
                   child: Text(
                     'Forgot Password',
                     style: TextStyle(color: Color.fromRGBO(143, 148, 251, 1)),
